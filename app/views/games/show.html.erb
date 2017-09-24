@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @game.height %>
+</p>
+
+<p>
+  <strong>Width:</strong>
+  <%= @game.width %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @game.name %>
+</p>
+<hr/>
+
+<div id="GameOfLifeField">
+  <%= render 'field' %>
+</div>
+
+<hr/>
+<%= button_to "Nächste Runde", next_round_path(@game) , remote: true %>
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
