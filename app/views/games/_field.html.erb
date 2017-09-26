@@ -2,8 +2,7 @@
     <% @game.rows.each do |row| %>
     <tr>
       <% row.each do |cell| %>
-        <td class="<%= cell.alive ? 'alive' : '' %>">
-        </td>
+        <%= render_cell(cell) %>
       <% end %>
     </tr>
     <% end %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  put 'cells/toggle'
+
   resources :games
 
   post 'games/:id/next_round' => 'games#next_round', as: :next_round

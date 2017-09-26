@@ -12,17 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20170916103836) do
 
-  create_table "cells", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "cells", force: :cascade do |t|
     t.integer "x"
     t.integer "y"
-    t.bigint "game_id"
+    t.integer "game_id"
     t.boolean "alive", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_cells_on_game_id"
   end
 
-  create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "games", force: :cascade do |t|
     t.integer "height"
     t.integer "width"
     t.string "name"
@@ -30,5 +30,4 @@ ActiveRecord::Schema.define(version: 20170916103836) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "cells", "games"
 end
