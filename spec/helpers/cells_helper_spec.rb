@@ -11,5 +11,11 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe CellsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:cell) { create(:game).cells.first }
+
+  describe '::render_cell' do
+    it 'should render cell correct' do
+      expect(helper.render_cell(cell)).to eq "<td class=\"#{cell.alive ? 'alive' : ''}\"></td>"
+    end
+  end
 end

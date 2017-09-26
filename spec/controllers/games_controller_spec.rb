@@ -103,14 +103,18 @@ RSpec.describe GamesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          height: 4,
+          width: 4
+        }
       }
 
       it "updates the requested game" do
         game = Game.create! valid_attributes
         put :update, params: {id: game.to_param, game: new_attributes}, session: valid_session
         game.reload
-        skip("Add assertions for updated state")
+        expect(game.height).to eq 4
+        expect(game.width).to eq 4
       end
 
       it "assigns the requested game as @game" do

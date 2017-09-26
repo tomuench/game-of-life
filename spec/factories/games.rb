@@ -1,14 +1,20 @@
 FactoryGirl.define do
-
   factory :game_random, class: Game do
     height 3
     width 3
+    name 'Game-Random'
     random_build true
+  end
+
+  factory :game_invalid, class: Game do
+    height 0
+    width 0
   end
 
   factory :game do
     height 3
     width 5
+    name 'Game-Preset'
 
     after(:create) do |game, _evaluator|
       create_list(:cell_dead, 1, game: game, x: 0, y: 0)

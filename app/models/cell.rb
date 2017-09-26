@@ -24,12 +24,14 @@ class Cell < ApplicationRecord
     save
   end
 
+  # Lebende Nachbarn
   def neighbours_living
     game.cells.alive.where("x between #{x - 1} and #{x + 1} or x in (#{(x-1) % game.width},#{(x+1) % game.width})")
         .where("y between #{y - 1} and #{y + 1} or y in (#{(y-1) % game.height},#{(y+1) % game.height})")
         .without(self)
   end
 
+  # Status in der nächsten Runde
   def next_round_alive
     neighboars_count = neighbours_living.count
     !(neighboars_count < 2 || neighboars_count > 3)
@@ -47,6 +49,7 @@ class Cell < ApplicationRecord
 
   private
 
+  # Random Status setzen
   def set_random_alive
     return unless random_alive
     self.alive = Random.new.rand(100) % 3 == 0
