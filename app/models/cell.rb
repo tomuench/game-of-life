@@ -20,14 +20,14 @@ class Cell < ApplicationRecord
 
   # Ändert den Lebensstatus
   def life_toggle
-    self.alive = !self.alive
+    self.alive = !alive
     save
   end
 
   # Lebende Nachbarn
   def neighbours_living
-    game.cells.alive.where("x between #{x - 1} and #{x + 1} or x in (#{(x-1) % game.width},#{(x+1) % game.width})")
-        .where("y between #{y - 1} and #{y + 1} or y in (#{(y-1) % game.height},#{(y+1) % game.height})")
+    game.cells.alive.where("x between #{x - 1} and #{x + 1} or x in (#{(x - 1) % game.width},#{(x + 1) % game.width})")
+        .where("y between #{y - 1} and #{y + 1} or y in (#{(y - 1) % game.height},#{(y + 1) % game.height})")
         .without(self)
   end
 
@@ -38,7 +38,7 @@ class Cell < ApplicationRecord
   end
 
   def to_s
-    "#{alive ? 'X' : ' '}"
+    (alive ? 'X' : ' ').to_s
   end
 
   def self.bulk_update(next_round_states)

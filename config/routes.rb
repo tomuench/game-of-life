@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  put 'cells/toggle'
+  put 'cells/:id/toggle' => 'cells#toggle'
 
   resources :games
 

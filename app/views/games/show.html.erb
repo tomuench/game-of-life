@@ -1,27 +1,47 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Height:</strong>
-  <%= @game.height %>
-</p>
-
-<p>
-  <strong>Width:</strong>
-  <%= @game.width %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @game.name %>
-</p>
-<hr/>
-
-<div id="GameOfLifeField">
-  <%= render 'field' %>
+<%- model_class = Game -%>
+<div class="page-header">
+  <h1><%= @game.name %></h1>
 </div>
 
-<hr/>
-<%= button_to "Nächste Runde", next_round_path(@game) , remote: true %>
+<div class="row">
+  <div class="col-lg-3">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <strong><%= model_class.human_attribute_name(:dimension) %>:</strong>
+        <%= @game.height %> x <%= @game.width %>
+      </li>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+      <li class="list-group-item">
+        <strong><%= model_class.human_attribute_name(:created_at) %>:</strong>
+        <%= l @game.created_at.to_date %> 
+      </li>
+
+      <li class="list-group-item">
+        <%= button_to "Nächste Runde", next_round_path(@game) , class: "btn btn-primary btn-block", remote: true %>
+      </li>
+
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-lg-6">
+            <%= link_to t('helpers.links.back'), games_path, class: "btn btn-default" %>
+          </div>
+          <div class="col-lg-6">
+            <%= link_to t('helpers.links.edit') , edit_game_path(@game), class: "btn btn-default" %>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-lg-9">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div id="GameOfLifeField">
+          <%= render 'field' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<hr/>

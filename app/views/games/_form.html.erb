@@ -1,32 +1,48 @@
-<%= form_with(model: game, local: true) do |form| %>
-  <% if game.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+<%= form_for @game, :html => { :class => "form-horizontal game" } do |f| %>
 
-      <ul>
-      <% game.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <% if @game.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @game.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :height %>
-    <%= form.number_field :height, id: :game_height %>
+  <%= f.hidden_field :random_build, value: true %>
+  <div class="form-group">
+    <%= f.label :height, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :height, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:height) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :width, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :width, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:width) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name) %>
   </div>
 
-  <div class="field">
-    <%= form.label :width %>
-    <%= form.number_field :width, id: :game_width %>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                games_path, :class => 'btn btn-default' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :game_name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
