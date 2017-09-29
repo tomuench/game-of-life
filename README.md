@@ -30,4 +30,10 @@ cd game-of-life
 ./build.sh
 ``` 
 
+Alternativ kann auch direkt das Docker-Image genutzt werden.
+```
+docker run -d -p 3000:3000 --name tomuench-gol-container tomuench/game-of-life
+``` 
+
+
 Danach kann die Applikation über http://localhost:3000 geöffnet werden.
