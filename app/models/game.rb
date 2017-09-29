@@ -17,7 +17,8 @@ class Game < ApplicationRecord
 
   # Zellen als Zeilen aufrufen
   def rows
-    (0..height).map { |row_id| cells[row_id * width...(row_id + 1) * width] }
+    cells_ordered = cells.order(:y => :desc)
+    (0..height).map { |row_id| cells.where(y: row_id) }
   end
 
   # Überführe das Spiel in die nächste Runde

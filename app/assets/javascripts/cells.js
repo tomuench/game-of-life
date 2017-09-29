@@ -1,7 +1,10 @@
 
-function toggleCell(target, id) {
+/**
+ * Statuswechsel einer Zelle
+ */
+function toggleCell(target) {
     var t = $(target);
-
+    var id = t.data('id');
     $.ajax({
         url: "/cells/" + id + "/toggle",
         method: 'PUT',

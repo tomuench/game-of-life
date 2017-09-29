@@ -33,10 +33,10 @@ class Cell < ApplicationRecord
 
   # Status in der nächsten Runde
   def next_round_alive
-    neighboars_count = neighbours_living.count
-    !(neighboars_count < 2 || neighboars_count > 3)
+    new_born || living_condition
   end
 
+  
   def to_s
     (alive ? 'X' : ' ').to_s
   end
@@ -48,6 +48,17 @@ class Cell < ApplicationRecord
   end
 
   private
+
+  # Wird eine Zelle neu geboren?
+  def new_born
+    !alive && neighbours_living.count == 3
+  end
+
+  # Bleibt eine Zelle lebend?
+  def living_condition
+    neighboars_count = neighbours_living.count
+    alive && !(neighboars_count < 2 || neighboars_count > 3)
+  end
 
   # Random Status setzen
   def set_random_alive

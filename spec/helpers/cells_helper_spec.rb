@@ -15,7 +15,7 @@ RSpec.describe CellsHelper, type: :helper do
 
   describe '::render_cell' do
     it 'should render cell correct' do
-      expect(helper.render_cell(cell)).to eq "<td class=\"#{cell.alive ? 'alive' : ''}\"></td>"
+      expect(helper.render_cell(cell)).to eq "<td data-id=\"#{cell.id}\" class=\"cell#{cell.alive ? ' alive' : ''}\"></td>"
     end
   end
 end
