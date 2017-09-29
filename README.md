@@ -25,5 +25,7 @@ Das Projekt ist mit Hilfe von Docker gekapselt und wird mit Hilfe von diesen ins
 folgender Befehl im Projekt-Verzeichnis ausgewählt werden.
 
 ```
+git clone https://github.com/tomuench/game-of-life.git
+cd game-of-life
 ./build.sh
 ``` 
