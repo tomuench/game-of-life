@@ -29,3 +29,5 @@ git clone https://github.com/tomuench/game-of-life.git
 cd game-of-life
 ./build.sh
 ``` 
+
+Danach kann die Applikation über http://localhost:3000 geöffnet werden.
