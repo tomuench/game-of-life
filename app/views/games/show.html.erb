@@ -1,47 +1,66 @@
 <%- model_class = Game -%>
-<div class="page-header">
-  <h1><%= @game.name %></h1>
-</div>
-
-<div class="row">
-  <div class="col-lg-3">
-    <ul class="list-group">
-      <li class="list-group-item">
-        <strong><%= model_class.human_attribute_name(:dimension) %>:</strong>
-        <%= @game.height %> x <%= @game.width %>
-      </li>
-
-      <li class="list-group-item">
-        <strong><%= model_class.human_attribute_name(:created_at) %>:</strong>
-        <%= l @game.created_at.to_date %> 
-      </li>
-
-      <li class="list-group-item">
-        <%= button_to "Nächste Runde", next_round_path(@game) , class: "btn btn-primary btn-block", remote: true %>
-      </li>
-
-      <li class="list-group-item">
-        <div class="row">
-          <div class="col-lg-6">
-            <%= link_to t('helpers.links.back'), games_path, class: "btn btn-default" %>
-          </div>
-          <div class="col-lg-6">
-            <%= link_to t('helpers.links.edit') , edit_game_path(@game), class: "btn btn-default" %>
-          </div>
-        </div>
-      </li>
-    </ul>
+  <div class="page-header">
+    <h1>
+      <%= @game.name %>
+    </h1>
   </div>
-  <div class="col-lg-9">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div id="GameOfLifeField">
-          <%= render 'field' %>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong><%= model_class.human_attribute_name(:dimension) %>:</strong>
+          <%= @game.height %> x
+            <%= @game.width %>
+        </li>
+
+        <li class="list-group-item">
+          <strong><%= model_class.human_attribute_name(:created_at) %>:</strong>
+          <%= l @game.created_at.to_date %>
+        </li>
+
+        <li class="list-group-item">
+          <%= button_to "Nächste Runde", next_round_path(@game) , id: 'nextRound', class: "btn btn-primary btn-block", remote: true %>
+        </li>
+
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="start" onclick="toggleGame(true)" class="btn btn-success">
+                <i class="glyphicon glyphicon-play"></i> Starten
+              </button>
+            </div>
+            <div class="col-sm-6">
+              <button id="stop" onclick="toggleGame(false)" disabled class="btn btn-warning">
+                <i class="glyphicon glyphicon-stop"></i> Stoppen
+              </button>
+            </div>
+          </div>
+
+        </li>
+
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-sm-6">
+              <%= link_to t('helpers.links.back'), games_path, class: "btn btn-default" %>
+            </div>
+            <div class="col-sm-6">
+              <%= link_to t('helpers.links.edit') , edit_game_path(@game), class: "btn btn-default" %>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="GameOfLifeField">
+            <%= render 'field' %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<hr/>
+  <hr/>
